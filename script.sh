@@ -1,0 +1,30 @@
+log() {
+echo "$(tput setaf 1)[CLEAN] $(date) $@$(tput sgr0)"
+}
+
+if [[ $EUID -ne 0 ]]; then
+  log "Login as root via sudo... (sudo bash $0)"
+  sudo bash $0
+  exit 0
+fi
+
+#Update and Clean
+log "APT-GET UPDATE"
+apt-get update > /dev/null
+log "APT-GET DISTUPGRADE -Y"
+apt-get dist-upgrade -y
+log "APT-GET AUTOREMOVE -Y"
+apt-get autoremove -y
+log "APT-GET CLEAN"
+apt-get clean
+
+#Purge old Stuff
+rclist=`echo $(dpkg -l | awk '$1 == "rc" { print $2; }')`
+for f in $rclist; do
+  log "PURGE" $f
+done
+if [[ $rclist ]]; then
+  apt-get remove --purge $rclist -y
+else
+  log "Nothing to PURGE"
+fi
