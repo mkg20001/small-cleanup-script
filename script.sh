@@ -8,6 +8,9 @@ if [[ $EUID -ne 0 ]]; then
   exit 0
 fi
 
+#Set PATH for cronjob
+PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+
 #Update and Clean
 log "APT-GET UPDATE"
 apt-get update > /dev/null
