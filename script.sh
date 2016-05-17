@@ -31,3 +31,12 @@ if [[ $rclist ]]; then
 else
   log "Nothing to PURGE"
 fi
+
+#Snappy Stuff
+whereis snap 2> /dev/null > /dev/null
+if [ $? -eq 0 ]; then
+  log "SNAP REFRESH"
+  snap list | awk -F" " '{if ($1 && NR>1) { system("snap refresh " $1 " 2> /dev/null") }}'
+fi
+
+log "DONE"
