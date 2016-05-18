@@ -28,7 +28,7 @@ rclist=`echo $(dpkg -l | awk '$1 == "rc" { print $2; }')`
 for f in $rclist; do
   log "PURGE" $f
 done
-if [[ $rclist ]]; then
+if [ $rclist ]; then
   apt-get remove --purge $rclist -y
 else
   log "Nothing to PURGE"
