@@ -2,9 +2,9 @@ log() {
 echo "$(tput setaf 1)[CLEAN] $(date) $@$(tput sgr0)"
 }
 
-if [[ $EUID -ne 0 ]]; then
-  log "Login as root via sudo... (sudo bash $0)"
-  sudo bash $0
+if [ $USER != "root" ]; then
+  log "Login as root via sudo... (sudo $0)"
+  sudo $0
   exit 0
 fi
 
