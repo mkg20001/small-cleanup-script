@@ -1,3 +1,5 @@
+#!/bin/sh
+
 log() {
 echo "$(tput setaf 1)[CLEAN] $(date) $@$(tput sgr0)"
 }
