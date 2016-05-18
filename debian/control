@@ -9,8 +9,8 @@ Vcs-Git: https://github.com/mkg20001/small-cleanup-script
 Vcs-Browser: https://github.com/mkg20001/small-cleanup-script
 
 Package: small-cleanup-script
-Architecture: all
-Depends: ${misc:Depends}
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: Small Cleanup Script
  This will update all packages,
  remove unused packages (autoremove)
