@@ -1,3 +1,10 @@
+small-cleanup-script (1.1.0-1) unstable; urgency=medium
+
+  * Compiled with shc
+  * Add "snap refresh"
+
+ -- Maciej Krüger <mkg20001@gmail.com>  Wed, 18 May 2016 16:32:32 +0200
+
 small-cleanup-script (1.0.0-1) unstable; urgency=medium
 
   * Initial release
