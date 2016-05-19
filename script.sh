@@ -35,7 +35,7 @@ else
 fi
 
 #Snappy Stuff
-if [ "/usr/bin/snap" -a ]; then
+if [ -f "/usr/bin/snap"  ]; then
   log "SNAP REFRESH"
   snap list | awk -F" " '{if ($1 && NR>1) { system("snap refresh " $1 " 2> /dev/null") }}'
 fi
