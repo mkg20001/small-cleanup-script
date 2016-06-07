@@ -5,13 +5,24 @@ echo "$(tput setaf 1)[CLEAN] $(date) $@$(tput sgr0)"
 }
 
 if [ $USER != "root" ]; then
+  groups $USER | grep "sudo" -o > /dev/null 2> /dev/null
+  if [ $? -ne 0 ] && [ "x$1" != "x-f" ]; then
+    log "You have no permission to run this command!"
+    log "If you think this is an error try -f"
+    exit 2
+  fi
   log "Login as root via sudo... (sudo $0)"
   sudo $0
-  exit 0
+  exit $?
 fi
 
-#Set PATH for cronjob
-PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+if [ "x$1" == "xcron" ]; then
+  #Set PATH for cronjob
+  PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+  #Execute as cronjob
+  /usr/bin/small-cleanup-script &>> /var/log/small-cleanup-script.log
+  exit $?
+fi
 
 #Update and Clean
 log "APT-GET UPDATE"

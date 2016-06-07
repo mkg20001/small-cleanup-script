@@ -10,7 +10,7 @@ Vcs-Browser: https://github.com/mkg20001/small-cleanup-script
 
 Package: small-cleanup-script
 Architecture: any
-Depends: ${shlibs:Depends}, ${misc:Depends}
+Depends: ${shlibs:Depends}, ${misc:Depends}, sudo
 Description: Small Cleanup Script
  This will update all packages,
  remove unused packages (autoremove)
