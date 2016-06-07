@@ -4,6 +4,8 @@ log() {
 echo "$(tput setaf 1)[CLEAN] $(date) $@$(tput sgr0)"
 }
 
+arg="x$1"
+
 if [ $USER != "root" ]; then
   groups $USER | grep "sudo" -o > /dev/null 2> /dev/null
   if [ $? -ne 0 ] && [ "x$1" != "x-f" ]; then
@@ -16,11 +18,11 @@ if [ $USER != "root" ]; then
   exit $?
 fi
 
-if [ "x$1" == "xcron" ]; then
+if [ $arg != "xcron" ]; then
   #Set PATH for cronjob
-  PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
+  PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
   #Execute as cronjob
-  /usr/bin/small-cleanup-script &>> /var/log/small-cleanup-script.log
+  /usr/bin/small-cleanup-script >> /var/log/small-cleanup-script.log 2>> /var/log/small-cleanup-script.log
   exit $?
 fi
 
