@@ -31,7 +31,7 @@ if [ "x$1" = "xcron" ]; then
   #Set PATH for cronjob
   PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
   #Execute as cronjob
-  /usr/bin/small-cleanup-script &>> /var/log/small-cleanup-script.log
+  bash `realpath $0` &>> /var/log/small-cleanup-script.log
   exit $?
 fi
 
