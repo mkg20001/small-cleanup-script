@@ -4,7 +4,6 @@ log() {
 echo "$(tput setaf 1)[CLEAN] $(date) $@$(tput sgr0)"
 }
 
-arg="x$1"
 
 if [ $USER != "root" ]; then
   groups $USER | grep "sudo" -o > /dev/null 2> /dev/null
@@ -13,13 +12,13 @@ if [ $USER != "root" ]; then
     log "If you think this is an error try -f"
     exit 2
   fi
-  s="sudo bash `realpath $0`"
+  s="sudo bash `realpath $0` $*"
   log "Run as root via sudo... ($s)"
   sudo $s
   exit $?
 fi
 
-if [ $arg == "xcron" ]; then
+if [ "x$1" = "xcron" ]; then
   #Set PATH for cronjob
   PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
   #Execute as cronjob
