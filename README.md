@@ -5,7 +5,7 @@ A small cleanup script for apt
 
 ## Install from PPA
 ```
-sudo apt-add-repository ppa:mkg20001/stable
+sudo add-apt-repository ppa:mkg20001/stable
 sudo apt update
 sudo apt install small-cleanup-script
 ```
