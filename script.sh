@@ -13,6 +13,10 @@ logit() {
   logger "[$$] [small-cleanup-script] $*"
 }
 
+if [ -z "$USER" ]; then
+  USER=$(whoami)
+fi
+
 if [ "$USER" != "root" ]; then
   set +e
   groups $USER | grep "sudo" -o > /dev/null 2> /dev/null
