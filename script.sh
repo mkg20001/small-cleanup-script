@@ -16,8 +16,9 @@ logit() {
 if [ "$USER" != "root" ]; then
   set +e
   groups $USER | grep "sudo" -o > /dev/null 2> /dev/null
+  ex=$?
   set -e
-  if [ $? -ne 0 ] && [ "x$1" != "x-f" ]; then
+  if [ $ex -ne 0 ] && [ "x$1" != "x-f" ]; then
     log "You have no permission to run this command!"
     log "This was reported"
     log "If you think this is an error try -f"
