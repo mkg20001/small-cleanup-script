@@ -4,8 +4,8 @@ Priority: optional
 Maintainer: Maciej Krüger <mkg20001@gmail.com>
 Build-Depends: debhelper (>=9), bash, devscripts
 Standards-Version: 3.9.6
-Homepage: https://github.com/mkg20001/small-cleanup-script
-Vcs-Git: https://github.com/mkg20001/small-cleanup-script
+Homepage: https://github.com/mkg20001/small-cleanup-script#readme
+Vcs-Git: https://github.com/mkg20001/small-cleanup-script.git
 Vcs-Browser: https://github.com/mkg20001/small-cleanup-script
 
 Package: small-cleanup-script

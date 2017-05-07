@@ -1,0 +1,9 @@
+/var/log/small-cleanup-script.log {
+	weekly
+	size 10M
+	compress
+	delaycompress
+	missingok
+	notifempty
+	create 644 root root
+}

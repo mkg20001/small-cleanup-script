@@ -1,5 +1,7 @@
 #!/bin/bash
 
+[ -z "$TERM" ] && TERM=dumb
+
 red=$(tput setaf 1)
 reset=$(tput sgr0)
 logfile="/var/log/small-cleanup-script.log"
@@ -7,15 +9,13 @@ logfile="/var/log/small-cleanup-script.log"
 set -e
 
 log() {
-echo "$red[CLEAN] $(date) $@$reset"
+  echo "$red[CLEAN] $(date) $@$reset"
 }
 logit() {
   logger "[$$] [small-cleanup-script] $*"
 }
 
-if [ -z "$USER" ]; then
-  USER=$(whoami)
-fi
+[ -z "$USER" ] && USER=$(whoami)
 
 if [ "$USER" != "root" ]; then
   set +e
@@ -75,19 +75,19 @@ log "APT-GET CLEAN"
 apt-get clean
 
 #Purge old Stuff
-rclist=`echo $(dpkg -l | awk '$1 == "rc" { print $2; }')`
-for f in $rclist; do
+purgelist=`echo $(dpkg -l | awk '$1 == "rc" { print $2; }')`
+for f in $purgelist; do
   logit "Purged $f"
   log "PURGE" $f
 done
-if [ "$rclist" ]; then
-  apt-get remove --purge $rclist -y
+if [ "$purgelist" ]; then
+  apt-get remove --purge $purgelist -y
 else
   log "Nothing to PURGE"
 fi
 
-#Snappy Stuff
-if [ -f "/usr/bin/snap"  ]; then
+#Snap Stuff
+if [ -f "/usr/bin/snap" ]; then
   log "SNAP REFRESH"
   snap refresh
 fi

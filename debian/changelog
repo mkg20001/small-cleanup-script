@@ -1,3 +1,11 @@
+small-cleanup-script (1.5.0-1) unstable; urgency=medium
+
+  * Fix logging
+  * Add logrotate
+  * Make it work once again
+
+ -- Maciej Krüger <mkg20001@gmail.com>  Sun, 07 May 2017 17:28:03 +0200
+
 small-cleanup-script (1.4.1-1ubuntu1) unstable; urgency=medium
 
   * Small Bugfix
