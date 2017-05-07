@@ -1,4 +1,9 @@
 *~
 *.x
 *.c
-
+debian/small-cleanup-script
+debian/files
+*.substvars
+debhelper-build-stamp
+small-cleanup-script
+*.log
