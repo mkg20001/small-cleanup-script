@@ -59,7 +59,7 @@ if [ "x$1" = "xcron" ]; then
   #Set PATH for cronjob
   PATH="$PATH:/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/snap/bin"
   #Execute as cronjob
-  bash $(readlink -f $0) &>> $logfile
+  bash $(readlink -f $0) 2>> $logfile >> $logfile
   logit "Cronjob finished"
   exit $?
 fi
